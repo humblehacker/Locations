@@ -77,12 +77,13 @@ struct ContentView: View {
                 }
 
                 Section {
-                    Button("Settings") {
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    Button("Location Settings") {
+                        let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION_SERVICES")!
+                        UIApplication.shared.open(url)
                     }
                 }
             }
-                .navigationBarTitle("Locations")
+            .navigationBarTitle("Locations")
         }
         .onAppear {
             locationAuthorization = locationManager.getAuthorizationStatus()
@@ -142,6 +143,7 @@ struct CustomLabeledContentStyle: LabeledContentStyle {
         }
     }
 }
+
 extension CLAuthorizationStatus {
     var name: String {
         switch self {
